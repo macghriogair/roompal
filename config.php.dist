@@ -1,0 +1,18 @@
+<?php
+
+return [
+    'file' => __DIR__ . '/cal.ics', // prefer local
+    'url' => null,
+
+    'clients' => [
+        'konfi-re' => [
+           'pattern' => "/^konfi.?rechts|Konferenzraum rechts/i"
+        ],
+        'konfi-li' => [
+            'pattern' => "/^konfi.?links|Konferenzraum links/i"
+        ],
+        'delodi' => [
+            'pattern' => "/^delodi/i"
+        ]
+    ]
+];
