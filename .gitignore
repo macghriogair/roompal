@@ -2,4 +2,4 @@ vendor/
 node_modules/
 cal.ics
 config.php
-public/app.js
+public/js/

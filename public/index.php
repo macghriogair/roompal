@@ -6,10 +6,9 @@
     <title>RoomPal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://unpkg.com/vue@2.2.2"></script>
 </head>
 <body>
     <div id="app"></div>
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/bundle.js"></script>
 </body>
 </html>
