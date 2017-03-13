@@ -15,6 +15,8 @@ class Event
     public $organizer;
     public $location;
 
+    public $sort;
+
     public function __construct(
         \DateTimeImmutable $start,
         \DateTimeImmutable $end,
@@ -22,10 +24,12 @@ class Event
         string $organizer,
         string $location
     ) {
-        $this->start = $start->format('Y-m-d H:i');
-        $this->end = $end->format('Y-m-d H:i');
+        $this->start = $start->setTimezone(new \DateTimeZone('Europe/Berlin'))->format('Y-m-d H:i');
+        $this->end = $end->setTimezone(new \DateTimeZone('Europe/Berlin'))->format('Y-m-d H:i');
         $this->summary = $summary;
         $this->organizer = $organizer;
         $this->location = $location;
+
+        $this->sort = $start->getTimestamp();
     }
 }
