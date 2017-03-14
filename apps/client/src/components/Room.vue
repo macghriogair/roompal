@@ -1,6 +1,6 @@
 <template>
   <div class="room">
-    <h1 v-bind:class="{free:free, busy:busy}">{{ room.title }}</h1>
+    <h1 v-bind:class="{busy:room.busy}">{{ room.title }}</h1>
     <h3>Next Events</h3>
     <ul class="list-group">
       <li class="list-group-item" v-for="event in room.events" >
@@ -24,16 +24,6 @@ export default {
     return {
     }
   },
-
-  computed: {
-    free() {
-        return true;
-    },
-    busy() {
-        return false;
-    }
-  },
-
 }
 </script>
 
@@ -42,10 +32,10 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-.free {
+.room h1 {
     background: #d4f2f4;
 }
-.busy {
+.room h1.busy {
     background: #f77493;
 }
 </style>

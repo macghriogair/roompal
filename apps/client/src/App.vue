@@ -29,17 +29,16 @@ export default {
       room: {
         title: 'Room #1',
         clientId: null,
-        events: []
+        events: [],
+        busy: false
       }
     }
   },
 
   watch: {
     room: {
-        handler: function(val) {
-            if (val && val.events.length > 0) {
-                this.checkIsCurrent(val.events[0].start);
-            }
+        handler: function() {
+            this.checkIsBusy();
         },
         deep: true
     }
@@ -67,19 +66,25 @@ export default {
             })
             .catch((e) => console.error(e));
     },
-    checkIsCurrent(dtBeginString, dtEndString) {
+    checkIsBusy() {
+        if (this.room && this.room.events.length > 0) {
+            let busy = this.isNowInRange(this.room.events[0].start, this.room.events[0].end)
+            console.log(busy);
+            this.room.busy = busy;
+        }
+    },
+    isNowInRange(dtBeginString, dtEndString) {
         let now = new Date();
-        let dtStart = new Date(dtBeginString);
-        let dtEnd = new Date(dtEndString);
-        let r =  window.moment.range(dtStart, dtEnd);
-        console.log(r.contains(now));
-        debugger;
+        let range =  window.moment.range(new Date(dtBeginString), new Date(dtEndString));
+        return range.contains(now);
     }
   },
 
   mounted() {
     this.room.clientId = this.$parent.clientId;
     this.loadData(true);
+    window.setInterval(this.checkIsBusy, 1000 * 60);
+    window.setInterval(this.loadData, 5000 * 60);
   }
 }
 </script>
